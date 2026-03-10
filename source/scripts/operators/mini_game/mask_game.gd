@@ -7,6 +7,8 @@ extends Node2D
 @onready var sfx_mask: AudioStreamPlayer2D = $"SfxMask"
 @onready var paint_area: PaintArea = %PaintArea
 
+@export var score: int = 100
+
 var paint_needed: Color
 
 signal finished()
@@ -23,6 +25,7 @@ func _has_finished_painting() -> bool:
 func _end_mask_game() -> void:
 	paint_area.can_paint = false
 	finished.emit()
+	GameManager.score += score
 
 func _on_paint_area_press_brush() -> void:
 	if paint_needed != paint_area.brush_color:
