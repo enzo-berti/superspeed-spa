@@ -19,6 +19,8 @@ func _ready() -> void:
 	best_score_label.text_desired = str(GameManager.best_score)
 	GameManager.score = 0
 	GameManager.health = 3
+	GameManager.patience_time = 40
+	GameManager.win_clients = 0
 
 func _process(_delta: float) -> void:
 	btn_hovered(button_mainmenu)

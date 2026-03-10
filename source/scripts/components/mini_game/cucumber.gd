@@ -8,8 +8,8 @@ extends Node2D
 
 @onready var target_pos: Vector2 = global_position
 
-@export var speed: float = 1.0
-@export var score_max: int = 25
+@export var speed: float = 2.8
+@export var score_max: int = 50
 
 enum states
 {

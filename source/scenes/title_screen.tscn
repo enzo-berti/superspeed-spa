@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://qfpd4nnc6vqc" path="res://assets/images/buttons/button_start.png" id="3_b3t8g"]
 [ext_resource type="Texture2D" uid="uid://b2ngj7egmejki" path="res://assets/images/buttons/button_quit.png" id="4_7v5jn"]
 [ext_resource type="Texture2D" uid="uid://bh5uk2nnnjygy" path="res://assets/images/ui/ui_logo.png" id="5_3agv4"]
-[ext_resource type="AudioStream" uid="uid://dylji6fhqu6rk" path="res://assets/sounds/bgm/bgm_menu.ogg" id="6_yegqs"]
+[ext_resource type="AudioStream" uid="uid://dylji6fhqu6rk" path="res://assets/sounds/bgm/bgm_menu.ogg" id="6_cs5ya"]
 [ext_resource type="AudioStream" uid="uid://c0syjwmtpen8x" path="res://assets/sounds/sfx/sfx_button_pressed.ogg" id="7_cs5ya"]
 [ext_resource type="Texture2D" uid="uid://2uh2bsphit4r" path="res://assets/images/ui/ui_title.png" id="8_fmbml"]
 
@@ -78,7 +78,7 @@ texture = ExtResource("5_3agv4")
 expand_mode = 1
 
 [node name="bgm_main_menu" type="AudioStreamPlayer2D" parent="." unique_id=2050804421]
-stream = ExtResource("6_yegqs")
+stream = ExtResource("6_cs5ya")
 autoplay = true
 
 [node name="sfx_button_pressed" type="AudioStreamPlayer2D" parent="." unique_id=682097371]
