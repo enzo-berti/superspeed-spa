@@ -16,7 +16,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_kdvnq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"angry",
 "speed": 5.0
 }, {
@@ -24,7 +24,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_qmtip")
 }],
-"loop": true,
+"loop": 1,
 "name": &"happy",
 "speed": 5.0
 }, {
@@ -32,7 +32,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_vwr17")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }]
@@ -66,7 +66,7 @@ position = Vector2(-118, -32)
 [node name="Eye2" parent="." index="2" unique_id=1974628696 instance=ExtResource("5_qmtip")]
 position = Vector2(119, -30)
 
-[node name="Mask" parent="." index="4" unique_id=1945729470]
+[node name="MaskGame" parent="." index="4" unique_id=1945729470]
 mask_texture = ExtResource("2_vwr17")
 
 [node name="SFXNeutral" parent="." index="8" unique_id=1921924930]
