@@ -66,9 +66,18 @@ func define_texture_mask(maskTexture: Texture2D) -> void:
 
 func change_mask_color(new_color: MaskColorAssets.mask_color) -> void:
 	brush_color = MaskColorAssets.get_mask_color(new_color)
+	
+	if brush_color == MaskColorAssets.NONE_COLOR:
+		return
+
+	var pixel_color: Color
 	for x in range(circle_image.get_width()):
 		for y in range(circle_image.get_height()):
-			circle_image.set_pixel(x, y, circle_image.get_pixel(x, y).a * brush_color)
+			pixel_color = circle_image.get_pixel(x, y)
+			if pixel_color.a == 1:
+				pixel_color = pixel_color.a * brush_color
+				pixel_color.a = 1 # in case a color change the alpha
+				circle_image.set_pixel(x, y, pixel_color)
 
 func change_brush_size(new_brush_size: int) -> void:
 	brush_size = new_brush_size
