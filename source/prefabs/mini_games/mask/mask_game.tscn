@@ -20,6 +20,7 @@ script = ExtResource("3_uehh4")
 circle_texture = ExtResource("4_wlxgu")
 brush_color = Color(0, 0, 0, 0)
 brush_size = 15
+brush_detail = 10
 
 [node name="SfxMask" type="AudioStreamPlayer2D" parent="." unique_id=134941850]
 stream = ExtResource("4_jyg7e")

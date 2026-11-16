@@ -8,6 +8,7 @@ signal release_brush
 var circle_image: Image
 @export var brush_color : Color
 @export var brush_size : int
+@export var brush_detail: int
 var can_paint : bool = true
 
 var _image : Image
@@ -38,11 +39,11 @@ func _draw_input(event: InputEvent) -> void:
 	if !get_rect().has_point(lpos - offset):
 		return
 	
-	var num := ceili(event.relative.length())
+	var num := ceili(event.relative.length() / brush_detail)
 	var target_pos = impos - (event.relative)
 	
 	for i in num:
-		impos = impos.move_toward(target_pos, 1.0)
+		impos = impos.move_toward(target_pos, brush_detail)
 		filled_circle(_image, impos)
 	
 	texture.update(_image)
