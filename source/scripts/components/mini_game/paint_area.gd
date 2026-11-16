@@ -4,7 +4,8 @@ extends Sprite2D
 signal press_brush
 signal release_brush
 
-var circle_image: Image = Image.load_from_file("res://assets/images/ui/mask/draw_circle.png")
+@export var circle_texture: CompressedTexture2D
+var circle_image: Image
 @export var brush_color : Color
 @export var brush_size : int
 var can_paint : bool = true
@@ -12,6 +13,7 @@ var can_paint : bool = true
 var _image : Image
 
 func _ready() -> void:
+	circle_image = circle_texture.get_image()
 	# define brush size
 	change_brush_size(brush_size)
 

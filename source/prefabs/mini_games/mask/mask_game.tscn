@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://db7il62vfsuqa" path="res://scripts/shaders/paint_area.gdshader" id="2_wlxgu"]
 [ext_resource type="Script" uid="uid://bnvhb2orwtida" path="res://scripts/components/mini_game/paint_area.gd" id="3_uehh4"]
 [ext_resource type="AudioStream" uid="uid://s4g7shu475br" path="res://assets/sounds/sfx/sfx_apply_mask.ogg" id="4_jyg7e"]
+[ext_resource type="Texture2D" uid="uid://smu6ake50cps" path="res://assets/images/ui/mask/draw_circle.png" id="4_wlxgu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ul4w3"]
 shader = ExtResource("2_wlxgu")
@@ -16,6 +17,7 @@ pourcentage_needed = 0.75
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ul4w3")
 script = ExtResource("3_uehh4")
+circle_texture = ExtResource("4_wlxgu")
 brush_color = Color(0, 0, 0, 0)
 brush_size = 15
 
