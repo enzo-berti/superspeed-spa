@@ -4,16 +4,21 @@ extends Sprite2D
 signal press_brush
 signal release_brush
 
+var circle_image: Image = Image.load_from_file("res://assets/images/ui/mask/draw_circle.png")
 @export var brush_color : Color
 @export var brush_size : int
 var can_paint : bool = true
 
 var _image : Image
 
-func _input(event: InputEvent) -> void:
-	_drawInput(event)
+func _ready() -> void:
+	# define brush size
+	change_brush_size(brush_size)
 
-func _drawInput(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	_draw_input(event)
+
+func _draw_input(event: InputEvent) -> void:
 	if !can_paint || brush_color.a == 0:
 		release_brush.emit()
 		return
@@ -27,7 +32,7 @@ func _drawInput(event: InputEvent) -> void:
 		return
 	
 	var lpos: Vector2 = to_local(event.position)
-	var impos: Vector2 = lpos - offset + get_rect().size / 2.0
+	var impos: Vector2 = lpos - offset + get_rect().size / 2.0 - Vector2(brush_size, brush_size)
 	if !get_rect().has_point(lpos - offset):
 		return
 	
@@ -36,7 +41,7 @@ func _drawInput(event: InputEvent) -> void:
 	
 	for i in num:
 		impos = impos.move_toward(target_pos, 1.0)
-		filled_circle(_image, impos, brush_size)
+		filled_circle(_image, impos)
 	
 	texture.update(_image)
 	press_brush.emit()
@@ -52,17 +57,20 @@ func calcul_color_pourcentage(color_target: Color) -> float:
 	
 	return score / (texture_size.x * texture_size.y)
 
-func defineTextureMask(maskTexture: Texture2D) -> void:
+func define_texture_mask(maskTexture: Texture2D) -> void:
 	_image = Image.create_empty(int(maskTexture.get_size().x), int(maskTexture.get_size().y), false, Image.FORMAT_RGBA8)
 	texture = ImageTexture.create_from_image(_image)
 	material.set("shader_parameter/mask_texture", maskTexture) 
 
 func change_mask_color(new_color: MaskColorAssets.mask_color) -> void:
 	brush_color = MaskColorAssets.get_mask_color(new_color)
+	for x in range(circle_image.get_width()):
+		for y in range(circle_image.get_height()):
+			circle_image.set_pixel(x, y, circle_image.get_pixel(x, y).a * brush_color)
 
-func filled_circle(image_screen: Image, pos: Vector2i, radius: int)->void:
-	for i in range(-radius, radius):
-		var height: int = int(sqrt(radius * radius - i * i))
-		for j in range(-height, height):
-			if (get_rect().has_point(Vector2(i + pos.x, j + pos.y) + get_rect().position)):
-				image_screen.set_pixel(i + pos.x, j + pos.y, brush_color)
+func change_brush_size(new_brush_size: int) -> void:
+	brush_size = new_brush_size
+	circle_image.resize(brush_size * 2, brush_size * 2, Image.INTERPOLATE_NEAREST)
+
+func filled_circle(image_screen: Image, pos: Vector2i)->void:
+	image_screen.blend_rect(circle_image, circle_image.get_used_rect(), pos)

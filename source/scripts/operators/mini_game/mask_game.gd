@@ -17,7 +17,7 @@ func set_paint_needed(new_color_needed: Color) -> void:
 	paint_needed = new_color_needed
 
 func _ready() -> void:
-	paint_area.defineTextureMask(mask_texture)
+	paint_area.define_texture_mask(mask_texture)
 
 func _has_finished_painting() -> bool:
 	return paint_area.calcul_color_pourcentage(paint_needed) >= pourcentage_needed
