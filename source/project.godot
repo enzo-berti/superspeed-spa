@@ -16,7 +16,7 @@ general/updates_per_second=90
 
 config/name="SuperSpeed-SPA"
 run/main_scene="uid://drcepl1658dpn"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.9843137, 0.89411765, 0.8352941, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
