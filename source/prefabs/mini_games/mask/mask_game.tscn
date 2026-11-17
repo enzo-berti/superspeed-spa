@@ -17,13 +17,12 @@ pourcentage_needed = 0.75
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ul4w3")
 script = ExtResource("3_uehh4")
-circle_texture = ExtResource("4_wlxgu")
 brush_color = Color(0, 0, 0, 0)
 brush_size = 15
 brush_detail = 10
+pencil_texture = ExtResource("4_wlxgu")
 
 [node name="SfxMask" type="AudioStreamPlayer2D" parent="." unique_id=134941850]
 stream = ExtResource("4_jyg7e")
 
 [connection signal="press_brush" from="PaintArea" to="." method="_on_paint_area_press_brush"]
-[connection signal="release_brush" from="PaintArea" to="." method="_on_paint_area_release_brush"]
