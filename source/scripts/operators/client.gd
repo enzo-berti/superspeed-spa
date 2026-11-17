@@ -11,6 +11,7 @@ var in_animation: bool = true
 var is_angry: bool = false
 
 @onready var angry_timer: Timer = $AngryTimer
+@onready var happy_timer: Timer = $HappyTimer
 @onready var sfx_new_client: AudioStreamPlayer2D = $SFXNewClient
 @onready var sfx_neutral: AudioStreamPlayer2D = $SFXNeutral
 @onready var sfx_happy: AudioStreamPlayer2D = $SFXHappy
@@ -28,13 +29,18 @@ func _physics_process(delta: float) -> void:
 
 func _on_mask_game_finished() -> void:
 	finished_game.emit("mask")
+	happy()
 	start_cucumber()
 
 func _on_cucumber_game_finished() -> void:
 	finished_game.emit("cucumber")
+	happy()
 
-func _on_timer_timeout() -> void:
+func _on_angry_timer_timeout() -> void:
 	is_angry = false
+	idle()
+
+func _on_happy_timer_timeout() -> void:
 	idle()
 
 #Makes client leave the screen then be deleted
@@ -50,7 +56,6 @@ func start_cucumber() -> void:
 
 func idle() -> void:
 	$AnimatedSprite2D.play("idle")
-	sfx_neutral.play()
 
 func angry() -> void:
 	if is_angry:
@@ -64,6 +69,7 @@ func angry() -> void:
 
 func happy() -> void:
 	$AnimatedSprite2D.play("happy")
+	happy_timer.start()
 	sfx_happy.play()
 
 func _on_move_to_started() -> void:
@@ -77,5 +83,6 @@ func _on_move_to_ended() -> void:
 		return
 	
 	idle()
+	sfx_neutral.play()
 	start_mask()
 	finished_game.emit("spawn")

@@ -20,8 +20,11 @@ script = ExtResource("1_1wbty")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=847792521]
 sprite_frames = SubResource("SpriteFrames_yrb5a")
 
+[node name="HappyTimer" type="Timer" parent="." unique_id=1138199803]
+one_shot = true
+
 [node name="AngryTimer" type="Timer" parent="." unique_id=34356966]
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 
 [node name="MaskGame" parent="." unique_id=1945729470 instance=ExtResource("3_t73wa")]
@@ -46,7 +49,8 @@ stream = SubResource("AudioStreamRandomizer_0duou")
 
 [node name="SFXAngry" type="AudioStreamPlayer2D" parent="." unique_id=92775139]
 
-[connection signal="timeout" from="AngryTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HappyTimer" to="." method="_on_happy_timer_timeout"]
+[connection signal="timeout" from="AngryTimer" to="." method="_on_angry_timer_timeout"]
 [connection signal="finished" from="MaskGame" to="." method="_on_mask_game_finished"]
 [connection signal="finished" from="CucumberGame" to="." method="_on_cucumber_game_finished"]
 [connection signal="ended" from="MoveTo" to="." method="_on_move_to_ended"]
